@@ -33,7 +33,7 @@ const initPlayers = (players) => {
             name:players[player],
             strength:getRandomStrength(),
             image:"images/super-"+(player+1)+".png",
-            type:player%2==0?"hero":"Villain"
+            type:player%2==0?"hero":"villain"
         }  
         );
     }
@@ -54,16 +54,17 @@ const buildPlayers = (players, type) => {
     // Loop through players and accumulate HTML template
     // depending of type of player(hero|villain)
     // Type your code here
-    players.map(function(player) {
-        fragment = fragment +
-                `<div class="player">
-                    <img src="${player.image}" alt="">
-                    <div class="name">${player.name}</div>
-                    <div class="strength">${player.strength}</div>
+    for (let index = 0; index < players.length; index++) {
+        player = `<div class="player">
+                    <img src="${players[index].image}" alt="">
+                    <div class="name">${players[index].name}</div>
+                    <div class="strength">${players[index].strength}</div>
                 </div>`;
-    });
-   
+        if (players[index].type ==type) {
+            fragment += player;
+        }
 
+    }
     return fragment;
 }
 // Display players in HTML
